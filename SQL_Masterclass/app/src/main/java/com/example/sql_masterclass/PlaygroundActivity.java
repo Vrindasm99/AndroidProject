@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +36,19 @@ public class PlaygroundActivity extends AppCompatActivity {
 
         // 🔹 CALL THE METHOD HERE
         loadDatabaseStructure();
+        TextView tvDbTitle = findViewById(R.id.tvDbTitle);
+        TextView tvDbStructure = findViewById(R.id.tvDbStructure);
+
+        tvDbTitle.setOnClickListener(v -> {
+            if (tvDbStructure.getVisibility() == View.GONE) {
+                tvDbStructure.setVisibility(View.VISIBLE);
+                tvDbTitle.setText("📦 Database Structure ▲");
+            } else {
+                tvDbStructure.setVisibility(View.GONE);
+                tvDbTitle.setText("📦 Database Structure ▼");
+            }
+        });
+
     }
 
     // 3️⃣ WRITE STEP 2 METHOD HERE (⬅️ THIS IS THE ANSWER)

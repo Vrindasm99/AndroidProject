@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F5F9FF"
-    android:fitsSystemWindows="true">
+    android:fillViewport="true"
+    android:background="#F5F9FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -18,7 +21,7 @@
         android:textColor="#1565C0"
         android:layout_marginBottom="10dp"/>
 
-    <!-- DATABASE STRUCTURE CARD -->
+    <!-- DATABASE STRUCTURE DROPDOWN -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,30 +32,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:orientation="vertical">
 
+            <!-- HEADER (CLICKABLE) -->
             <TextView
                 android:id="@+id/tvDbTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="📦 Database Structure"
+                android:text="📦 Database Structure ▼"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="#1565C0"
-                android:paddingBottom="6dp"/>
+                android:padding="14dp"
+                android:background="#E3F2FD"/>
 
+            <!-- CONTENT (HIDDEN INITIALLY) -->
             <TextView
                 android:id="@+id/tvDbStructure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:fontFamily="monospace"
                 android:textSize="14sp"
                 android:textColor="#37474F"
-                android:text="Loading tables..."
-                android:lineSpacingExtra="4dp"/>
+                android:lineSpacingExtra="4dp"
+                android:visibility="gone"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 
 
     <EditText
@@ -130,4 +137,5 @@
             android:scrollbars="horizontal|vertical"/>
     </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
