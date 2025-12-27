@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,6 +17,43 @@
         android:textStyle="bold"
         android:textColor="#1565C0"
         android:layout_marginBottom="10dp"/>
+
+    <!-- DATABASE STRUCTURE CARD -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tvDbTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📦 Database Structure"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#1565C0"
+                android:paddingBottom="6dp"/>
+
+            <TextView
+                android:id="@+id/tvDbStructure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textSize="14sp"
+                android:textColor="#37474F"
+                android:text="Loading tables..."
+                android:lineSpacingExtra="4dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 
     <EditText
         android:id="@+id/etQuery"

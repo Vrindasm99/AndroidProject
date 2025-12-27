@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailActivity extends AppCompatActivity {
@@ -11,50 +12,88 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Keep the UI exactly the same by using the existing layout
         setContentView(R.layout.activity_learn_detail);
 
-        // 1. Initialize Views
+        // ===== LINK VIEWS (MATCHES XML EXACTLY) =====
         TextView tvTitle = findViewById(R.id.tvDetailTitle);
         TextView tvDesc = findViewById(R.id.tvDetailDesc);
         TextView tvCode = findViewById(R.id.tvDetailCode);
-        TextView tvTable = findViewById(R.id.tvExampleTables); // Make sure this ID exists in your XML
+        TextView tvTable = findViewById(R.id.tvExampleTables);
         Button btnMenu = findViewById(R.id.btnMenu);
         Button btnTryIt = findViewById(R.id.btnTryIt);
 
-        // 2. Catch Data from Intent
+        // ===== GET DATA FROM INTENT =====
         String title = getIntent().getStringExtra("title");
         String desc = getIntent().getStringExtra("desc");
         String code = getIntent().getStringExtra("code");
 
-        // 3. Set Data to UI (This keeps your UI look unchanged)
+        // ===== SET DATA =====
         tvTitle.setText(title);
         tvDesc.setText(desc);
         tvCode.setText(code);
 
-        // Optional: Logic to show simple static example tables based on topic keywords
+        // ===== TABLE OUTPUT (NO DASHES, MONOSPACE) =====
         if (title != null) {
+
             if (title.contains("SELECT")) {
-                tvTable.setText("| ID | Name     | City     |\n|----|----------|----------|\n| 1  | Alex     | London   |\n| 2  | Sarah    | Tokyo    |");
+                tvTable.setText(
+                        "1   Alex    London\n" +
+                                "2   Sarah   Tokyo\n" +
+                                "3   John    Paris"
+                );
+
+            } else if (title.contains("DISTINCT")) {
+                tvTable.setText(
+                        "London\n" +
+                                "Tokyo\n" +
+                                "Paris"
+                );
+
             } else if (title.contains("WHERE")) {
-                tvTable.setText("| ID | Name     | Age | Status |\n|----|----------|-----|--------|\n| 5  | Mike     | 25  | Active |");
+                tvTable.setText(
+                        "5   Mike    Active\n" +
+                                "7   Anna    Active"
+                );
+
+            } else if (title.contains("AND")) {
+                tvTable.setText(
+                        "1   Alex    London\n" +
+                                "3   John    London"
+                );
+
+            } else if (title.contains("OR")) {
+                tvTable.setText(
+                        "2   Sarah   Tokyo\n" +
+                                "4   Emma    Paris"
+                );
+
+            } else if (title.contains("NOT")) {
+                tvTable.setText(
+                        "6   Chris   Berlin\n" +
+                                "8   Laura   Rome"
+                );
+
+            } else if (title.contains("LIKE")) {
+                tvTable.setText(
+                        "1   Alex    London\n" +
+                                "9   Alfred  Madrid"
+                );
+
             } else {
-                tvTable.setText("| SQL Result Table View |");
+                tvTable.setText(
+                        "1   Sample  Result\n" +
+                                "2   Example Output"
+                );
             }
         }
 
-        // 4. Back Button Logic
+        // ===== BACK TO MENU =====
         btnMenu.setOnClickListener(v -> finish());
 
-        // 5. THE FIX: "Try it in Playground" Button Logic
+        // ===== TRY IT IN PLAYGROUND =====
         btnTryIt.setOnClickListener(v -> {
-            // FIXED: Changed target from PracticeActivity (Quiz) to PlaygroundActivity (Coding)
             Intent intent = new Intent(DetailActivity.this, PlaygroundActivity.class);
-
-            // FIXED: Changed key to "PRE_FILLED_QUERY" so PlaygroundActivity knows to catch it
             intent.putExtra("PRE_FILLED_QUERY", code);
-
             startActivity(intent);
         });
     }
