@@ -20,6 +20,7 @@
         <activity android:name=".PracticeActivity" />
         <activity android:name=".LearnDetailActivity" />
         <activity android:name=".PlaygroundActivity" />
+        <activity android:name=".AboutActivity" />
 
     </application>
 </manifest>
